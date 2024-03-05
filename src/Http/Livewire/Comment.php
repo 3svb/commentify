@@ -2,7 +2,9 @@
 
 namespace Usamamuneerchaudhary\Commentify\Http\Livewire;
 
-
+use App\Models\Team;
+use App\Traits\General;
+use App\Traits\RandomQuotes;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,14 +17,16 @@ use Usamamuneerchaudhary\Commentify\Models\User;
 
 class Comment extends Component
 {
-    use AuthorizesRequests;
+    use AuthorizesRequests, General, RandomQuotes;
 
     public $comment;
 
     public $users = [];
 
     public $isReplying = false;
-    public $hasReplies = false;
+    public $hasReplies = true;
+
+    public string $quote = '';
 
     public $showOptions = false;
 
@@ -90,6 +94,7 @@ class Comment extends Component
      */
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|null
     {
+        $this->quote = $this->getRandomQuote(false);
         return view('commentify::livewire.comment');
     }
 
@@ -105,9 +110,11 @@ class Comment extends Component
         $this->validate([
             'replyState.body' => 'required'
         ]);
+
         $reply = $this->comment->children()->make($this->replyState);
         $reply->user()->associate(auth()->user());
         $reply->commentable()->associate($this->comment->commentable);
+        $reply->team_id = $this->getTeam()->id; // per team
         $reply->save();
 
         $this->replyState = [
@@ -151,7 +158,7 @@ class Comment extends Component
     public function getUsers($searchTerm): void
     {
         if (!empty($searchTerm)) {
-            $this->users = User::where('name', 'like', '%' . $searchTerm . '%')->take(5)->get();
+            $this->users = User::where('username', 'like', '%' . $searchTerm . '%')->take(5)->get();
         } else {
             $this->users = [];
         }

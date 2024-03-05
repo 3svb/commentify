@@ -26,7 +26,7 @@ class Comment extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'team_id'];
 
     protected $withCount = [
         'likes',

@@ -49,5 +49,4 @@ class CommentLike extends Model
     {
         return $query->where('user_agent', $userAgent);
     }
-
 }

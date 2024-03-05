@@ -21,11 +21,14 @@ trait HasLikes
      */
     public function isLiked(): bool|int
     {
+
         $ip = request()->ip();
         $userAgent = request()->userAgent();
         if (auth()->user()) {
+
             return User::with('likes')->whereHas('likes', function ($q) {
-                $q->where('comment_id', $this->id);
+                $q->where('comment_id', $this->id)
+                    ->where('user_id', auth()->id());
             })->count();
         }
 

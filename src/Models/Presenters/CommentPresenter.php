@@ -48,20 +48,18 @@ class CommentPresenter
         $replacements = [];
 
         foreach ($usernames as $username) {
-            $user = User::where('name', $username)->first();
+            $user = User::where('username', $username)->first();
 
             if ($user) {
                 $userRoutePrefix = config('commentify.users_route_prefix', 'users');
 
-                $replacements['@'.$username] = '<a href="/'.$userRoutePrefix.'/'.$username.'">@'.$username.
+                $replacements['@' . $username] = '<a href="/' . $userRoutePrefix . '/' . $username . '">@' . $username .
                     '</a>';
             } else {
-                $replacements['@'.$username] = '@'.$username;
+                $replacements['@' . $username] = '@' . $username;
             }
         }
 
         return str_replace(array_keys($replacements), array_values($replacements), $text);
     }
-
-
 }
