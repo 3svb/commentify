@@ -63,7 +63,7 @@ class Comment extends Component
      */
     public function editComment(): void
     {
-        $this->authorize('update', $this->comment);
+        $this->authorize('update_comment', $this->comment);
         $this->validate([
             'editState.body' => 'required|min:2'
         ]);
@@ -79,7 +79,7 @@ class Comment extends Component
     #[On('refresh')]
     public function deleteComment(): void
     {
-        $this->authorize('destroy', $this->comment);
+        $this->authorize('destroy_comment', $this->comment);
         $this->comment->delete();
         $this->showOptions = false;
         $this->dispatch('refresh');
@@ -88,8 +88,7 @@ class Comment extends Component
     /**
      * @return Factory|Application|View|\Illuminate\Contracts\Foundation\Application|null
      */
-    public function render(
-    ): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|null
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|null
     {
         return view('commentify::livewire.comment');
     }
@@ -126,13 +125,19 @@ class Comment extends Component
     public function selectUser($userName): void
     {
         if ($this->replyState['body']) {
-            $this->replyState['body'] = preg_replace('/@(\w+)$/', '@'.str_replace(' ', '_', Str::lower($userName)).' ',
-                $this->replyState['body']);
-//            $this->replyState['body'] =$userName;
+            $this->replyState['body'] = preg_replace(
+                '/@(\w+)$/',
+                '@' . str_replace(' ', '_', Str::lower($userName)) . ' ',
+                $this->replyState['body']
+            );
+            //            $this->replyState['body'] =$userName;
             $this->users = [];
         } elseif ($this->editState['body']) {
-            $this->editState['body'] = preg_replace('/@(\w+)$/', '@'.str_replace(' ', '_', Str::lower($userName)).' ',
-                $this->editState['body']);
+            $this->editState['body'] = preg_replace(
+                '/@(\w+)$/',
+                '@' . str_replace(' ', '_', Str::lower($userName)) . ' ',
+                $this->editState['body']
+            );
             $this->users = [];
         }
     }
@@ -146,10 +151,9 @@ class Comment extends Component
     public function getUsers($searchTerm): void
     {
         if (!empty($searchTerm)) {
-            $this->users = User::where('name', 'like', '%'.$searchTerm.'%')->take(5)->get();
+            $this->users = User::where('name', 'like', '%' . $searchTerm . '%')->take(5)->get();
         } else {
             $this->users = [];
         }
     }
-
 }
