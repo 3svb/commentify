@@ -50,6 +50,7 @@ class Comments extends Component
      */
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|null
     {
+        dd('test'); // just for testing
         $this->quote = $this->getRandomQuote();
         $comments = $this->model
             ->comments()
