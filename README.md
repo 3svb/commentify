@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Changed by 3svb to fit CUP-TIED project
+Changed by 3svb to fit CUP-TIED project - changed in Git
 
 Commentify is a powerful Laravel Livewire package designed to provide an easy-to-integrate commenting system for any
 model in your Laravel application. Powered by Livewire, this package offers a seamless commenting experience that is
