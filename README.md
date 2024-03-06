@@ -12,6 +12,8 @@
 
 ## Introduction
 
+Changed by 3svb to fit CUP-TIED project
+
 Commentify is a powerful Laravel Livewire package designed to provide an easy-to-integrate commenting system for any
 model in your Laravel application. Powered by Livewire, this package offers a seamless commenting experience that is
 powered by Tailwind UI, making it easy for users to engage with your content. With features like comments pagination
@@ -23,30 +25,30 @@ powerful tool for enhancing user engagement and collaboration.
 
 ## Some Features Highlight
 
-- Easy to integrate
-- Supports Laravel 10+
-- Supports Livewire 3
-- Livewire powered commenting system
-- Tailwind UI
-- Add comments to any model
-- Nested Comments
-- Comments Pagination
-- Youtube style Like/unlike feature
-- Guest like/unlike of comments (based on `IP` & `UserAgent`)
-- Mention User with @ in Replies/Edits
-- Markdown Support
+-   Easy to integrate
+-   Supports Laravel 10+
+-   Supports Livewire 3
+-   Livewire powered commenting system
+-   Tailwind UI
+-   Add comments to any model
+-   Nested Comments
+-   Comments Pagination
+-   Youtube style Like/unlike feature
+-   Guest like/unlike of comments (based on `IP` & `UserAgent`)
+-   Mention User with @ in Replies/Edits
+-   Markdown Support
 
 ## Prerequisites
 
-- [Livewire](https://laravel-livewire.com/docs/2.x/installation)
-- [TailwindCSS](https://tailwindcss.com/)
-- [AlpineJS](https://alpinejs.dev/essentials/installation)
+-   [Livewire](https://laravel-livewire.com/docs/2.x/installation)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [AlpineJS](https://alpinejs.dev/essentials/installation)
 
 ## Installation Guide
 
 You can install the package via composer:
 
-```composer require usamamuneerchaudhary/commentify```
+`composer require usamamuneerchaudhary/commentify`
 
 ### Register Service Provider
 
@@ -59,16 +61,17 @@ Usamamuneerchaudhary\Commentify\Providers\CommentifyServiceProvider::class,
 ### Run Migrations
 
 Once the package is installed, you can run migrations,
-```php artisan migrate```
+`php artisan migrate`
 
 ### Publish Config File
 
 ```php
  php artisan vendor:publish --tag="commentify-config"
 ```
+
 This will publish `commentify.php` file in config directory. Here you can configure user route and pagination count etc.
 
-### Publish `tailwind.config.js` file, 
+### Publish `tailwind.config.js` file,
 
 This package utilizes TailwindCSS, and use some custom configurations. You can publish package's `tailwind.config.
 js` file by running the following command:
@@ -78,8 +81,10 @@ php artisan vendor:publish --tag="commentify-tailwind-config"
 ```
 
 ## Usage
+
 In your model, where you want to integrate comments, simply add the `Commentable` trait in that model.
-For example: 
+For example:
+
 ```php
 use Usamamuneerchaudhary\Commentify\Traits\Commentable;
 
@@ -91,11 +96,13 @@ class Article extends Model
 
 Next, in your view, pass in the livewire comment component. For example, if your view file is `articles/show.blade.
 php`. We can add the following code:
+
 ```html
-<livewire:comments :model="$article"/>
+<livewire:comments :model="$article" />
 ```
 
 #### Additionally, add the `HasUserAvatar` trait in `App\Models\User`, to use avatars:
+
 ```php
 use Usamamuneerchaudhary\Commentify\Traits\HasUserAvatar;
 
@@ -115,14 +122,12 @@ If you discover any security related issues, please email hello@usamamuneer.me i
 
 ## Credits
 
-- [Laravel](https://laravel.com)
-- [Tailwind](https://tailwindcss.com/)
-- [Livewire](https://laravel-livewire.com/)
-- [FlowBite](https://flowbite.com)
-- [All Contributors](https://github.com/usamamuneerchaudhary/commentify/graphs/contributors)
+-   [Laravel](https://laravel.com)
+-   [Tailwind](https://tailwindcss.com/)
+-   [Livewire](https://laravel-livewire.com/)
+-   [FlowBite](https://flowbite.com)
+-   [All Contributors](https://github.com/usamamuneerchaudhary/commentify/graphs/contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-
