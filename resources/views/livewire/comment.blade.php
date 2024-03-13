@@ -44,8 +44,7 @@
                     <!-- Dropdown menu -->
                     @if ($showOptions)
                         <div
-                            class="absolute z-10 top-full right-0 mt-1
-                    w-36 bg-white rounded-lg divide-y divide-gray-100
+                            class="absolute z-10 top-full right-0 mt-1 w-36 bg-white rounded-lg divide-y divide-gray-100
                     shadow dark:bg-gray-700 dark:divide-gray-600">
                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-300">
                                 @can('update_comment', $comment)
@@ -114,7 +113,6 @@
     @script
         <script>
             function detectAtSymbol() {
-                alert('test');
                 const textarea = document.getElementById('reply-comment');
                 if (!textarea) {
                     return;
@@ -135,6 +133,4 @@
             }
         </script>
     @endscript
-
-
 </div>
