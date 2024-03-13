@@ -10,8 +10,7 @@
     @else
         <article
             class="p-4 mb-1 text-base bg-white rounded-lg dark:bg-gray-900
-    @auth
-@if ($comment->user->id === auth()->user()->id)
+    @auth @if ($comment->user->id === auth()->user()->id)
             border border-blue-900
         @endif @endauth
     ">
@@ -22,7 +21,7 @@
                         {{-- <img class="mr-2 w-6 h-6 rounded-full" src="{{ $comment->user->avatar() }}"
                             alt="{{ $comment->user->username }}"> --}}
                         {{-- <x-avatar class="mr-2" :name="$comment->user->username" /> --}}
-                        {{ $comment->user->username }}
+                        {{-- {{ $comment->user->username }} --}}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         <time pubdate datetime="{{ $comment->presenter()->relativeCreatedAt() }}"
@@ -33,7 +32,7 @@
                 </div>
 
                 <div
-                    class="relative @auth @if (auth()->user()->hasRole('admin'))  @elseif($comment->user->id !== auth()->user()->id) hidden @endif @endauth">
+                    class="relative @auth @if (auth()->user()->hasRole('admin')) @elseif($comment->user->id !== auth()->user()->id) hidden @endif @endauth">
                     <button wire:click="$toggle('showOptions')"
                         class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         type="button">
