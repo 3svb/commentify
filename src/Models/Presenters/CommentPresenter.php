@@ -2,6 +2,7 @@
 
 namespace Usamamuneerchaudhary\Commentify\Models\Presenters;
 
+use Carbon\Carbon;
 use Illuminate\Support\HtmlString;
 use Usamamuneerchaudhary\Commentify\Models\Comment;
 use Usamamuneerchaudhary\Commentify\Models\User;
@@ -34,6 +35,7 @@ class CommentPresenter
      */
     public function relativeCreatedAt(): mixed
     {
+        Carbon::setLocale(config('commentify.language', 'en'));
         return $this->comment->created_at->diffForHumans();
     }
 
