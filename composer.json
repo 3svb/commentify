@@ -2,7 +2,7 @@
     "name": "usamamuneerchaudhary/commentify",
     "description": "Easy Laravel Livewire Comments with TailwindCSS UI",
     "keywords": [
-        "usamamuneerchaudhary",
+        "3svb",
         "laravel-livewire",
         "livewire",
         "comments",
@@ -13,8 +13,8 @@
     "type": "library",
     "authors": [
         {
-            "name": "Usama Muneer",
-            "email": "hello@usamamuneer.me",
+            "name": "dvb",
+            "email": "3svb@gmail.com",
             "role": "Developer"
         }
     ],
@@ -56,5 +56,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+        "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/3svb/commentify.git"
+        }
+    ]
 }
