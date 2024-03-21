@@ -6,4 +6,5 @@ return [
     'css_framework' => 'tailwind', // or 'bootstrap'
     'comment_nesting' => true, // set to false if you don't want to allow nesting of comments
     'language' => 'nl', // set date language
+    'textarea' => true
 ];

@@ -13,17 +13,20 @@
             class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200
     dark:bg-gray-800 dark:border-gray-700 w-full">
             <label for="{{ $inputId }}" class="sr-only">{{ $inputLabel }}</label>
-            {{-- <textarea id="{{$inputId}}" rows="1" class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none
-                              dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 @error($state . '.body')
-                              border-red-500 @enderror" placeholder="Schrijf iets ..."
-                wire:model.live="{{$state}}.body" oninput="detectAtSymbol()"></textarea> --}}
-
-            <input type="text"
-                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none
+            @if (config('commentify.textarea') === true)
+                <textarea id="{{ $inputId }}" rows="2"
+                    class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none
                               dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 @error($state . '.body')
                               border-red-500 @enderror"
-                placeholder="{{ $quote }}" wire:model.live="{{ $state }}.body"
-                oninput="detectAtSymbol()" />
+                    placeholder="{{ $quote }}" wire:model.live="{{ $state }}.body" oninput="detectAtSymbol()"></textarea>
+            @else
+                <input type="text"
+                    class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none
+                              dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 @error($state . '.body')
+                              border-red-500 @enderror"
+                    placeholder="{{ $quote }}" wire:model.live="{{ $state }}.body"
+                    oninput="detectAtSymbol()" />
+            @endif
             @if (!empty($users) && $users->count() > 0)
                 @include('commentify::livewire.partials.dropdowns.users')
             @endif {{-- @error($state . '.body')
