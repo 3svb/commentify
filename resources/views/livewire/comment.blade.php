@@ -20,7 +20,7 @@
                     <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         {{-- <img class="mr-2 w-6 h-6 rounded-full" src="{{ $comment->user->avatar() }}"
                             alt="{{ $comment->user->username }}"> --}}
-                        <x-avatar class="mr-2" :url="$comment->user->avatarThumb" />
+                        <x-avatar class="mr-2" :url="$comment->user->getAvatarThumb2()" />
                         {{ $comment->user->username }}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
