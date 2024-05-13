@@ -2,7 +2,6 @@
 
 namespace Usamamuneerchaudhary\Commentify\Http\Livewire;
 
-use App\Models\Team;
 use App\Traits\General;
 use App\Traits\RandomQuotes;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -20,6 +19,7 @@ class Comment extends Component
     use AuthorizesRequests, General, RandomQuotes;
 
     public $comment;
+    public $isOnline;
 
     public $users = [];
 
@@ -95,6 +95,7 @@ class Comment extends Component
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|null
     {
         $this->quote = $this->getRandomQuote(false);
+        $this->isOnline = $this->isOnline();
         return view('commentify::livewire.comment');
     }
 
